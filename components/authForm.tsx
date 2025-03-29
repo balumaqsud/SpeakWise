@@ -1,7 +1,7 @@
 "use client";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +52,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
           <h2 className="text-primary-100">SpeakWise</h2>
         </div>
         <h3>Practice English Speaking with AI</h3>
-        <Form {...form}>
+        <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6 mt-4 form"
@@ -75,7 +75,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
             <FormField
               control={form.control}
               name="password"
-              label="Passwrod"
+              label="Password"
               placeholder="Enter your Passwrod"
               type="password"
             />
@@ -84,11 +84,11 @@ const AuthForm = ({ type }: { type: FormType }) => {
               {isSignIn ? "Sign in" : "Create an account"}
             </Button>
           </form>
-        </Form>
+        </FormProvider>
         <p className="text-center">
           {isSignIn ? "No account yet? " : "Have an account already"}
           <Link
-            href={!isSignIn ? "/sign-in" : "sign-up"}
+            href={!isSignIn ? "/sign-in" : "/sign-up"}
             className="font-bold text-user-primary ml-1"
           >
             {isSignIn ? "Sign-up" : "Sign-in"}
