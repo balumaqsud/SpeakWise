@@ -45,17 +45,17 @@ const AuthForm = ({ type }: { type: FormType }) => {
   const isSignIn = type === "sign-in";
 
   return (
-    <div className="lg:min-w-[566px]">
-      <div className="flex flex-col card gap-6 px-10 py-14">
+    <div className="lg:min-w-[456px]">
+      <div className="flex border rounded-xl flex-col gap-6 px-8 py-10">
         <div className="flex flex-row gap-2 justify-center">
           <Image src="logo.svg" alt="logo" height={32} width={38} />
           <h2 className="text-primary-100">SpeakWise</h2>
         </div>
-        <h3>Practice English Speaking with AI</h3>
+        <h3 className="text-center">Practice English Speaking with AI</h3>
         <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6 mt-4 form"
+            className="w-full space-y-6 mt-4 form "
           >
             {!isSignIn && (
               <FormField
@@ -79,16 +79,15 @@ const AuthForm = ({ type }: { type: FormType }) => {
               placeholder="Enter your Passwrod"
               type="password"
             />
-            <p>password</p>
             <Button className="btn" type="submit">
               {isSignIn ? "Sign in" : "Create an account"}
             </Button>
           </form>
         </FormProvider>
         <p className="text-center">
-          {isSignIn ? "No account yet? " : "Have an account already"}
+          {isSignIn ? "No account yet? " : "Have an account already?"}
           <Link
-            href={!isSignIn ? "/sign-in" : "/sign-up"}
+            href={isSignIn ? "/sign-up" : "/sign-in"}
             className="font-bold text-user-primary ml-1"
           >
             {isSignIn ? "Sign-up" : "Sign-in"}
