@@ -5,25 +5,40 @@ import { Form, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 
-const formSchema = z.object({
-  username: z.string().min(2).max(50),
-});
+const AuthFormSchema = (type: FormType) => {
+  return z.object({
+    name: type === "sign-up" ? z.string().min(6) : z.string().optional(),
+    email: z.string().email(),
+    password: z.string().min(8),
+  });
+};
 
 const AuthForm = ({ type }: { type: FormType }) => {
+  const formSchema = AuthFormSchema(type);
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      name: "",
+      email: "",
+      password: "",
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    try {
+      if (type === "sign-up") {
+        console.log("sign-up", values);
+      } else {
+        console.log("sign-in", values);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(`there was an error${error}`);
+    }
   }
 
   const isSignIn = type === "sign-in";
