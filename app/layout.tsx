@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -9,7 +10,8 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "SpeakWise",
-  description: "Ai powered english-language mock interviewing app for English language learners",
+  description:
+    "Ai powered english-language mock interviewing app for English language learners",
 };
 
 export default function RootLayout({
@@ -19,10 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body
-        className={`${montserrat.className} antialiased pattern`}
-      >
+      <body className={`${montserrat.className} antialiased pattern`}>
         {children}
+        <Toaster />
       </body>
     </html>
   );

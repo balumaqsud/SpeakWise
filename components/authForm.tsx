@@ -5,7 +5,8 @@ import { Form, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "sonner";
+import { toast } from "sonner"; //sonner tos is new version of toast from shadcn
+import FormField from "./formField";
 
 const AuthFormSchema = (type: FormType) => {
   return z.object({
@@ -56,8 +57,28 @@ const AuthForm = ({ type }: { type: FormType }) => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="w-full space-y-6 mt-4 form"
           >
-            {!isSignIn && <p>name</p>}
-            <p>email</p>
+            {!isSignIn && (
+              <FormField
+                control={form.control}
+                name="name"
+                label="Name"
+                placeholder="Your name"
+              />
+            )}
+            <FormField
+              control={form.control}
+              name="email"
+              label="Email"
+              placeholder="Enter your Email"
+              type="email"
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              label="Passwrod"
+              placeholder="Enter your Passwrod"
+              type="password"
+            />
             <p>password</p>
             <Button className="btn" type="submit">
               {isSignIn ? "Sign in" : "Create an account"}
