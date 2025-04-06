@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner"; //sonner tos is new version of toast from shadcn
 import FormField from "./formField";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const AuthFormSchema = (type: FormType) => {
   return z.object({
@@ -18,6 +18,7 @@ const AuthFormSchema = (type: FormType) => {
 };
 
 const AuthForm = ({ type }: { type: FormType }) => {
+  const router = useRouter();
   const formSchema = AuthFormSchema(type);
 
   // 1. Define your form.
@@ -32,7 +33,6 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const router = useRouter();
     try {
       if (type === "sign-up") {
         toast.success("Account successfully created, please sign-in");
