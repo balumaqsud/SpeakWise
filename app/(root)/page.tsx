@@ -26,6 +26,18 @@ const HomePage = () => {
           className="max-sm:hidden"
         ></Image>
       </section>
+      <section className="flex flex-col gap-6 mt-8">
+        <h2>Your interviews</h2>
+        <div className="interviews-section">
+          <p>you haven't taken any interviews yet!</p>
+        </div>
+      </section>
+      <section className="flex flex-col gap-6 mt-8">
+        <h2>Take an interview</h2>
+        <div className="interviews-section">
+          <p>There are no interviews available!</p>
+        </div>
+      </section>
     </>
   );
 };
